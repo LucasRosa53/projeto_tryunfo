@@ -15,6 +15,7 @@ class App extends React.Component {
     name: '',
     value: '',
     isSaveButtonDisabled: true,
+    saveCard: [],
   };
 
   onInputChange = ({ target:
@@ -44,6 +45,32 @@ class App extends React.Component {
         && validacaoDesc && validacaoImg && validacaoRare
         && somaDosAtri && menorQue901 && menorQue902 && menorQue903),
     });
+  };
+
+  onSaveButtonClick = (e) => {
+    e.preventDefault();
+    const { cardName, cardDescription,
+      cardImage, cardRare, cardAttr1, cardAttr2, cardAttr3, cardTrunfo,
+    } = this.state;
+
+    const newCard = { cardName,
+      cardDescription,
+      cardImage,
+      cardRare,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+      cardTrunfo };
+    this.setState((prev) => ({
+      saveCard: [...prev.saveCard, newCard] }));
+    this.setState({ cardName: '',
+      cardDescription: '',
+      cardImage: '',
+      cardRare: 'normal',
+      cardAttr1: 0,
+      cardAttr2: 0,
+      cardAttr3: 0,
+      cardTrunfo: '' });
   };
 
   render() {
