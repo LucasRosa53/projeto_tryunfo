@@ -8,7 +8,7 @@ class Form extends Component {
       cardTrunfo, isSaveButtonDisabled,
       onInputChange, onSaveButtonClick } = this.props;
     return (
-      <form>
+      <form onSubmit={ onSaveButtonClick }>
         <label htmlFor="name-input">
           <input
             type="text"
