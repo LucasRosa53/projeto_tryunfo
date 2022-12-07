@@ -15,17 +15,12 @@ class App extends React.Component {
     name: '',
     value: '',
     isSaveButtonDisabled: true,
-    // onSaveButtonClick,
   };
 
   onInputChange = ({ target:
   { value, name } }) => {
     this.setState({ [name]: value }, this.validation);
   };
-
-  // onSaveButtonClick = (e) => {
-  //   e.preventDefault();
-  // };
 
   validation = () => {
     const { cardName, cardDescription,
