@@ -6,7 +6,7 @@ class Form extends Component {
     const { cardName, cardDescription, cardAttr1,
       cardAttr2, cardAttr3, cardImage, cardRare,
       cardTrunfo, isSaveButtonDisabled,
-      onInputChange, onSaveButtonClick } = this.props;
+      onInputChange, onSaveButtonClick, hasTrunfo } = this.props;
     return (
       <form onSubmit={ onSaveButtonClick }>
         <label htmlFor="name-input">
@@ -75,15 +75,18 @@ class Form extends Component {
             <option value="muito raro">muito raro</option>
           </select>
         </label>
-        <label htmlFor="trunfo-input">
-          <input
-            type="checkbox"
-            data-testid="trunfo-input"
-            checked={ cardTrunfo }
-            name="cardTrunfo"
-            onChange={ onInputChange }
-          />
-        </label>
+        { hasTrunfo ? <p>Você já tem um Super Trunfo em seu baralho </p> : (
+
+          <label htmlFor="trunfo-input">
+            <input
+              type="checkbox"
+              data-testid="trunfo-input"
+              checked={ cardTrunfo }
+              name="cardTrunfo"
+              onChange={ onInputChange }
+            />
+          </label>
+        )}
         <button
           type="submit"
           data-testid="save-button"
@@ -105,7 +108,7 @@ Form.propTypes = {
   cardImage: PropTypes.string,
   cardRare: PropTypes.string,
   cardTrunfo: PropTypes.bool,
-  //   hasTrunfo: PropTypes.bool,
+  hasTrunfo: PropTypes.bool,
   isSaveButtonDisabled: PropTypes.bool,
   onInputChange: PropTypes.func,
   onSaveButtonClick: PropTypes.func,
