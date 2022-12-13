@@ -64,6 +64,7 @@ class App extends React.Component {
       cardAttr3,
       cardTrunfo,
     };
+    // parte do código referente ao requisito 7
     this.setState((prev) => ({
       saveCard: [...prev.saveCard, newCard] }));
     this.setState({ cardName: '',
@@ -75,13 +76,14 @@ class App extends React.Component {
       cardAttr3: 0,
     });
     if (cardTrunfo === true) {
-      this.setState({
+      this.setState({ // parte do código referente ao requisito 7
         hasTrunfo: true,
       });
     }
   };
 
   render() {
+    const { saveCard } = this.state; // const adiconada para o requisito 8
     return (
       <div>
         <Form
@@ -90,6 +92,27 @@ class App extends React.Component {
           onSaveButtonClick={ this.onSaveButtonClick }
         />
         <Card { ...this.state } />
+
+        {/* // section criada para o requisito 8 */}
+        <section>
+          <ul>
+            { saveCard.map((cards, index) => (
+              <div key={ cards.cardName }>
+                <Card
+                  key={ index }
+                  cardName={ cards.cardName }
+                  cardDescription={ cards.cardDescription }
+                  cardAttr1={ cards.cardAttr1 }
+                  cardAttr2={ cards.cardAttr2 }
+                  cardAttr3={ cards.cardAttr3 }
+                  cardImage={ cards.cardImage }
+                  cardRare={ cards.cardRare }
+                  cardTrunfo={ cards.cardTrunfo }
+                />
+              </div>
+            )) }
+          </ul>
+        </section>
       </div>
     );
   }
